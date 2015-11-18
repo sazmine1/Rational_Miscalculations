@@ -54,13 +54,25 @@ public class Rational {
         p = p/s.getP();
         q = q/s.getQ();
     }
+    
+    // Finds the GCD of two integer inputs recursively.
+    public static int gcdER (int a, int b){
+        if ((a == b) || (b == 0)){
+            return a;} //returns the GCD.
+        else if (a < b){
+            return gcdER (b,a);} //If b is greater than a, the function will be run again with both values swapped.
+        else{
+            return gcdER (b , (a-b));
+        }
+    } //Recalls the function with b and the difference between a and b.
+
     //main method for testing purposes
     public static void main(String[] args){
         Rational r = new Rational(2,3); //Stores the rational number 2/3
         Rational s = new Rational(1,2); //Stores the rational number 1/2
-        r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains ½
+        r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains Â½
         System.out.println(r);
-        r.divide(s); //Multiplies r by s, changes r to 2/6.  s remains ½
+        r.divide(s); //Multiplies r by s, changes r to 2/6.  s remains Â½
         System.out.println(r);
         Rational a = new Rational(1,0);
         System.out.println(a);
