@@ -1,8 +1,8 @@
 /* 
-Team Miscalculations - Sean Bourke, Sadia Azmine
+Team Miscalculations - Nancy Li, Sadia Azmine
 APCS1 pd9
-HW 32 -- Irrationality Stops Here
-2015-11-17
+HW 33 -- Do You Even Add Bro?
+2015-11-19
 */
 
 public class Rational {
