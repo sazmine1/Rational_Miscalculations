@@ -54,11 +54,15 @@ public class Rational {
         p = p/s.getP();
         q = q/s.getQ();
     }
-    
+    //adds two rational classes and changes value of initial class
+    public void add(Rational s){
+        q = this.getQ() * s.getQ();
+        p = (this.getP() * s.getQ()) + (s.getP() * this.getQ());
+    }
     //subtracts two rational classes and changes value of initial class
     public void subtract(Rational s){
         q = this.getQ() * s.getQ();
-        p = (this.getP() * s.getQ()) + (s.getP() * this.getQ());
+        p = (this.getP() * s.getQ()) - (s.getP() * this.getQ());
     }
     
     // Finds the GCD of two integer inputs recursively.
