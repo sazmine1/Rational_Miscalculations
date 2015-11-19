@@ -1,7 +1,7 @@
 /* 
 Team Miscalculations - Nancy Li, Sadia Azmine
 APCS1 pd9
-HW 33 -- Do You Even Add Bro?
+HW 33 -- Do You Even Add, Bro?
 2015-11-19
 */
 
