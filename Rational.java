@@ -6,15 +6,14 @@ HW 33 -- Do You Even Add Bro?
 */
 
 public class Rational {
-    //numerator
-    private int p;
-    //denominator
-    private int q;
+    private int p; //numerator
+    private int q;//denominator
     //sets initial values for numerator and denominator
     public Rational() {
         p = 0;
         q = 1;
     }
+    
     //allows one to create a new Rational Object with a certain numerator and denominator
     public Rational (int num, int den) {
         //will cause an error message and reset to default
@@ -28,27 +27,33 @@ public class Rational {
             q = den;
         }
     }
+    
     //overwrites inherited toString
     public String toString() {
         return p + "/" + q;
     }
+    
     //stroes the value of the rational
     public double floatValue() {
-        return p/q;
+        return (p*1.0)/q;
     }
+    
     //accessor method for p
     public int getP(){
         return p;
     }
+    
     //accesor method for q
     public int getQ(){
         return q;
     }
+    
     //multiplies two rational classes together and changes the value of the initial class
     public void multiply(Rational s) {
         p = p*s.getP();
         q = q*s.getQ();
     }
+    
     //divides two rational classes and changes the value of the initial class
     public void divide(Rational s){
         p = p*s.getQ();
@@ -93,27 +98,27 @@ public class Rational {
 
     //////////////////////     PHASE 3     ///////////////////
     
-    public static int gcd(int this.getP(), int this.getQ()) {
+    public static int gcd(int p, int q) {
     	if ((p == q) || (q == 0)){
             return q;} //returns the GCD.
         else if (p < q){
-            return gcdER (q,p);
+            return gcd (q,p);
 	} //If q is greater than p,the function will be run again with both values swapped.
         else{
-            return gcdER (q , (p-q));
+            return gcd (q , (p-q));
         }
     } //Recalls the function with b and the difference between a and b.
     
-    public int compareTo(Rational s){
-    	if (this().equals(s)) {
-    		return 0;
+    public int compareTo(Rational hi){
+    	if (floatValue() == hi.floatValue() )  {
+	    return 0; //Returns 0 if the two numbers are equal
     	}
-    	else if (this() > s) {
-    		return 1;
-    	}
+    	else if (floatValue() > hi.floatValue()) {
+	    return 1;
+    	}//Returns 1 if the calling number is larger than the parameter
     	else {
-    		return -1;
-    	}
+	    return -1;
+    	}//Returns -1 if the calling number is smaller than the parameter
     }
     
     //main method for testing purposes
@@ -121,11 +126,20 @@ public class Rational {
         Rational r = new Rational(2,3); //Stores the rational number 2/3
         Rational s = new Rational(1,2); //Stores the rational number 1/2
         System.out.println(r);
-        System.out.println(s);	
+        System.out.println(s);
+	
+	//tests Phase 3
+        System.out.println(r.compareTo(r)); //should return 0
+	System.out.println(r.compareTo(s)); //should return 1
+	System.out.println(s.compareTo(r)); //should return -1
+
+	//tests Phase 1
 	r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains ½
         System.out.println(r);
         r.divide(s); //Multiplies r by s, changes r to 2/6.  s remains ½
         System.out.println(r);
+
+	//tests Phase 2
 	r.add(s); //Adds r and s, r becomes 14/12
         System.out.println(r);
 	r.subtract(s); //subtracts s from r, r becomes 16/24
