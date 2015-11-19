@@ -93,7 +93,7 @@ public class Rational {
 
     //////////////////////     PHASE 3     ///////////////////
     
-    public static int gcd(int num, int den) {
+    public static int gcd(int this.getP(), int this.getQ()) {
     	if ((p == q) || (q == 0)){
             return q;} //returns the GCD.
         else if (p < q){
