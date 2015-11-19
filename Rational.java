@@ -51,22 +51,22 @@ public class Rational {
     }
     //divides two rational classes and changes the value of the initial class
     public void divide(Rational s){
-        p = p/s.getP();
-        q = q/s.getQ();
+        p = p*s.getQ();
+        q = q*s.getP();
     }
     //adds two rational classes and changes value of initial class
     public void add(Rational s){
-        q = this.getQ() * s.getQ();
         p = (this.getP() * s.getQ()) + (s.getP() * this.getQ());
+        q = this.getQ() * s.getQ();
     }
     //subtracts two rational classes and changes value of initial class
     public void subtract(Rational s){
-        q = this.getQ() * s.getQ();
         p = (this.getP() * s.getQ()) - (s.getP() * this.getQ());
+        q = this.getQ() * s.getQ();
     }
     
     // Finds the GCD of two integer inputs recursively.
-    public static int gcdER (int a, int b){
+    public int gcdER (int a, int b){
         if ((a == b) || (b == 0)){
             return a;} //returns the GCD.
         else if (a < b){
@@ -75,15 +75,29 @@ public class Rational {
             return gcdER (b , (a-b));
         }
     } //Recalls the function with b and the difference between a and b.
-
+    //changes rational to reduced form
+    public void reduce() {
+	int p1 = p;
+	int q1 = q;
+        p = p / gcdER(p1, q1);
+        q = q / gcdER(p1, q1);
+    } 
     //main method for testing purposes
     public static void main(String[] args){
         Rational r = new Rational(2,3); //Stores the rational number 2/3
         Rational s = new Rational(1,2); //Stores the rational number 1/2
-        r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains ½
+        System.out.println(r);
+        System.out.println(s);	
+	r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains ½
         System.out.println(r);
         r.divide(s); //Multiplies r by s, changes r to 2/6.  s remains ½
         System.out.println(r);
+	r.add(s);
+        System.out.println(r);
+	r.subtract(s);
+        System.out.println(r);
+	r.reduce();
+        System.out.println(r);	
         Rational a = new Rational(1,0);
         System.out.println(a);
     }
