@@ -91,7 +91,30 @@ public class Rational {
         q = q / gcdER(p1, q1); //denom divided by gcd of num and denom
     }
 
-
+    //////////////////////     PHASE 3     ///////////////////
+    
+    public static int gcd(int num, int den) {
+    	if ((p == q) || (q == 0)){
+            return q;} //returns the GCD.
+        else if (p < q){
+            return gcdER (q,p);
+	} //If q is greater than p,the function will be run again with both values swapped.
+        else{
+            return gcdER (q , (p-q));
+        }
+    } //Recalls the function with b and the difference between a and b.
+    
+    public int compareTo(Rational s){
+    	if (this().equals(s)) {
+    		return 0;
+    	}
+    	else if (this() > s) {
+    		return 1;
+    	}
+    	else {
+    		return -1;
+    	}
+    }
     
     //main method for testing purposes
     public static void main(String[] args){
@@ -99,9 +122,9 @@ public class Rational {
         Rational s = new Rational(1,2); //Stores the rational number 1/2
         System.out.println(r);
         System.out.println(s);	
-	r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains ½
+	r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains Â½
         System.out.println(r);
-        r.divide(s); //Multiplies r by s, changes r to 2/6.  s remains ½
+        r.divide(s); //Multiplies r by s, changes r to 2/6.  s remains Â½
         System.out.println(r);
 	r.add(s); //Adds r and s, r becomes 14/12
         System.out.println(r);
