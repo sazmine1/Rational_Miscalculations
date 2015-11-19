@@ -136,7 +136,7 @@ public class Rational {
 	//tests Phase 1
 	r.multiply(s); //Multiplies r by s, changes r to 2/6.  s remains ½
         System.out.println(r);
-        r.divide(s); //Multiplies r by s, changes r to 2/6.  s remains ½
+        r.divide(s); //Multiplies r by s, changes r to 4/6.  s remains ½
         System.out.println(r);
 
 	//tests Phase 2
