@@ -121,7 +121,7 @@ public class Rational {
     	}//Returns -1 if the calling number is smaller than the parameter
     }
        //////////////////////     PHASE 4     ///////////////////
-  public boolean equals( Object a ) {
+    public boolean equals( Object a ) {
  
 	//First, check for aliasing.
 	boolean retVal = this == a;
@@ -132,12 +132,12 @@ public class Rational {
 		//...check to see if input Object is a Tile
 		if (retVal = a instanceof Rational) {
 			this.reduce();
-			a.reduce();
+			((Rational)a).reduce();
 			
-		//...and that its state variables match those of this Tile
-		retVal = this.getP() == ((Rational)a).getP()
-		&& this.getQ() == ((Rational)a).getQ();
-	} 
+		        //...and that its state variables match those of this Tile
+		        retVal = (this.getP() == ((Rational)a).getP()) && (this.getQ() == ((Rational)a).getQ());
+	        }
+        }
 	return retVal;
     }
  
