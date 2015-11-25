@@ -127,14 +127,19 @@ public class Rational {
  
 	    //...check to see if input Object is a Rational
 	    // Note that we reduce aliases because we don't actually want the original rationals to simplify
-	    if (retVal = a instanceof Rational) {
-		Rational _a = new Rational(((Rational)a).getP(),((Rational)a).getQ());
-	        Rational _this = this;
-		_a.reduce();
-	        _this.reduce();
+	    if (a instanceof Rational) {
+		// Checks for same sign (positive or negative)
+		boolean b1 = ((Rational)a).floatValue() > 0;
+		boolean b2 = this.floatValue() > 0;
+		if (!(b1 ^ b2)){
+		    Rational _a = new Rational(((Rational)a).p,((Rational)a).q);
+		    Rational _this = new Rational(this.p,this.q);
+		    _a.reduce();
+		    _this.reduce();
 			
-		//...and that its state variables match those of this Tile
-		retVal = (_this.getP() == _a.getP()) && (_this.getQ() == _a.getQ());
+		    //...and that its state variables match those of this Tile
+		    retVal = (_this.getP() == _a.getP()) && (_this.getQ() == _a.getQ());
+		}
 	    }				     
 	}
 	return retVal;
@@ -183,12 +188,15 @@ public class Rational {
 	//tests Phase 4
 	System.out.println("Testing Phase 4...");	
 	Rational i = new Rational(1,4);
-	Rational j = new Rational(2,8);
+	Rational j = new Rational(2,-8);
 	System.out.println("Is r equal to s? \t" + r.equals(s));
         System.out.println("Rational i: \t" + i);
         System.out.println("Rational j: \t" + j);	
-	System.out.println("Is i equal to j? \t" + i.equals(j));		
-	System.out.println("Is i equal to i? \t" + i.equals(i));	
+	System.out.println("Is i equal to j? \t" + i.equals(j));
+	System.out.println("Rational i: \t" + i);
+	System.out.println("Is i equal to i? \t" + i.equals(i));
+	System.out.println("Rational i: \t" + i);
+        System.out.println("Rational j: \t" + j);
 	System.out.println("Is j equal to i? \t" + j.equals(i));
 	System.out.println("Rational a is not defined but has a numerator of 1 and denominator of 0.");
 	System.out.println("Is i equal to a? \t" + i.equals(a));
