@@ -1,8 +1,8 @@
 /* 
-   Team Miscalculations - Nancy Li, Sadia Azmine
+   Team StaticVoid - Ricky Wu, Sadia Azmine
    APCS1 pd9
-   HW 33 -- Do You Even Add, Bro?
-   2015-11-19
+   HW 37 -- Rational Equality
+   2015-11-24
 */
 
 public class Rational {
