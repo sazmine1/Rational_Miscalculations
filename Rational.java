@@ -78,36 +78,32 @@ public class Rational {
     
     // Finds the GCD of two integer inputs recursively.
     public int gcdER (int a, int b){
-        if ((a == b) || (b == 0)){
-            return a;} //returns the GCD.
-        else if (a < b){
-            return gcdER (b,a);
-	} //If b is greater than a,the function will be run again with both values swapped.
-        else{
-            return gcdER (b , (a-b));
-        }
-    } //Recalls the function with b and the difference between a and b.
+        int remainder = a%b;
+	if (remainder == 0){
+	    return b;
+	}
+	//recursively uses gcd on b and the remainder until a%b is 0
+	//Note that if b > a, the first recusive step will be gcd(b,a)
+	return gcd(b,remainder);
+    }
     
     //changes rational to reduced form
     public void reduce() {
-	int p1 = p;
-	int q1 = q;
-        p = p / gcdER(p1, q1); //num divided by gcd of num and denom
-        q = q / gcdER(p1, q1); //denom divided by gcd of num and denom
+        p = p / gcdER(p, q); //num divided by gcd of num and denom
+        q = q / gcdER(p, q); //denom divided by gcd of num and denom
     }
 
     //////////////////////     PHASE 3     ///////////////////
     
     public static int gcd(int p, int q) {
-    	if ((p == q) || (q == 0)){
-            return q;} //returns the GCD.
-        else if (p < q){
-            return gcd (q,p);
-	} //If q is greater than p,the function will be run again with both values swapped.
-        else{
-            return gcd (q , (p-q));
-        }
-    } //Recalls the function with b and the difference between a and b.
+	int remainder = p%q;
+	if (remainder == 0){
+	    return p;
+	}
+	//recursively uses gcd on b and the remainder until a%b is 0
+	//Note that if b > a, the first recusive step will be gcd(b,a)
+	return gcd(q,remainder);
+    }
     
     public int compareTo(Rational hi){
     	if (floatValue() == hi.floatValue() )  {
@@ -129,15 +125,18 @@ public class Rational {
 	//Next, if this and input Object are different objects,
         if ( !retVal ) {
  
-	    //...check to see if input Object is a Tile
+	    //...check to see if input Object is a Rational
+	    // Note that we reduce aliases because we don't actually want the original rationals to simplify
 	    if (retVal = a instanceof Rational) {
-		this.reduce();
-		((Rational)a).reduce();
+		Rational _a = new Rational(((Rational)a).getP(),((Rational)a).getQ());
+	        Rational _this = this;
+		_a.reduce();
+	        _this.reduce();
 			
 		//...and that its state variables match those of this Tile
-		retVal = (this.getP() == ((Rational)a).getP()) && (this.getQ() == ((Rational)a).getQ());
-	    }
-        }
+		retVal = (_this.getP() == _a.getP()) && (_this.getQ() == _a.getQ());
+	    }				     
+	}
 	return retVal;
     }
  
