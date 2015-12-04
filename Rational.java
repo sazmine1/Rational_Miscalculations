@@ -106,14 +106,14 @@ public class Rational {
     }
     
     public int compareTo(Rational hi){
-    	if (floatValue() == hi.floatValue() )  {
+    	if ((this.getP() * hi.getQ()) == (hi.getP() * this.getQ()))  {
 	    return 0; //Returns 0 if the two numbers are equal
     	}
-    	else if (floatValue() > hi.floatValue()) {
-	    return 1;
+    	else if ((this.getP() * hi.getQ()) > (hi.getQ() * this.getP())) {
+	    return ((this.getP()*hi.getQ())-(hi.getP()*this.getQ()));
     	}//Returns 1 if the calling number is larger than the parameter
     	else {
-	    return -1;
+	    return ((this.getQ()*hi.getP())-(hi.getQ()*this.getP());
     	}//Returns -1 if the calling number is smaller than the parameter
     }
     //////////////////////     PHASE 4     ///////////////////
@@ -180,9 +180,9 @@ public class Rational {
 	System.out.println("Testing Phase 3...");
 	System.out.println("A 0 indicates two Rationals are equal.");
         System.out.println("How does r compare to r? \t" + r.compareTo(r)); //should return 0
-	System.out.println("A 1 indicates that the first Rational is greater than the second.");
+	System.out.println("A positive number indicates that the first Rational is greater than the second.");
 	System.out.println("How does r compare to s? \t" + r.compareTo(s)); //should return 1
-	System.out.println("A -1 indicates that the first Rational is less than the second.");
+	System.out.println("A negative number indicates that the first Rational is less than the second.");
 	System.out.println("How does s compare to r? \t" + s.compareTo(r)); //should return -1
 
 	//tests Phase 4
