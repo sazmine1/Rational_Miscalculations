@@ -1,11 +1,12 @@
 /* 
-   Team StaticVoid - Ricky Wu, Sadia Azmine
+   Team  -
    APCS1 pd9
-   HW 37 -- Rational Equality
-   2015-11-24
+   HW  -- 
+   2015-12-3
 */
 
-public class Rational {
+public class Rational implements Comparable {
+    
     private int p; //numerator
     private int q;//denominator
     //sets initial values for numerator and denominator
@@ -105,17 +106,24 @@ public class Rational {
 	return gcd(q,remainder);
     }
     
-    public int compareTo(Rational hi){
-    	if ((this.getP() * hi.getQ()) == (hi.getP() * this.getQ()))  {
-	    return 0; //Returns 0 if the two numbers are equal
+    //DEFINE compareTo method from Comparable interface HERE
+    public int compareTo(Object o){
+        
+        if( !(o instanceof Rational) ) {
+            return -2; //Returns -2 if Object o is not of class Rational 
+        }
+        else if ((this.getP() * ((Rational)o).getQ()) == (((Rational)o).getP() * this.getQ()))  {
+	        return 0; //Returns 0 if the two numbers are equal
     	}
-    	else if ((this.getP() * hi.getQ()) > (hi.getQ() * this.getP())) {
-	    return ((this.getP()*hi.getQ())-(hi.getP()*this.getQ()));
+    	else if ((this.getP() * ((Rational)o).getQ()) > (((Rational)o).getQ() * this.getP())) {
+	        return ((this.getP()*((Rational)o).getQ())-(((Rational)o).getP()*this.getQ()));
     	}//Returns 1 if the calling number is larger than the parameter
     	else {
-	    return ((this.getQ()*hi.getP())-(hi.getQ()*this.getP());
+	        return (-1);
     	}//Returns -1 if the calling number is smaller than the parameter
+        
     }
+    
     //////////////////////     PHASE 4     ///////////////////
     public boolean equals( Object a ) {
  
@@ -145,8 +153,14 @@ public class Rational {
 	return retVal;
     }
  
-    
-    
+    /*
+    public interface Comparable {
+        int compareTo(Object o);
+        
+        //no, just rewrite the compareTo from phase 3!
+    }
+    */
+  
     //main method for testing purposes
     public static void main(String[] args){
         Rational r = new Rational(2,3); //Stores the rational number 2/3
